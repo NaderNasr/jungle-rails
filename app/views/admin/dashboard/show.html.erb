@@ -1,2 +1,13 @@
-<h1>Admin::Dashboard#show</h1>
-<p>Find me in app/views/admin/dashboard/show.html.erb</p>
+<h1>Admin Dashboard</h1>
+<div class="jumbotron">
+  <ol class="breadcrumb">
+    <li><a href="admin/products">Total Products: <%= @total_products %></a></li>
+  </ol>
+  <ol class="breadcrumb">
+    <li>Total Categories: <%= @total_categories %></li>
+    <li><a href="/categories/1">Apparel </a></li>
+    <li><a href="/categories/2">Electronics </a></li>
+    <li><a href="/categories/3">Furniture </a></li>
+  </ol>
+</div>
+
