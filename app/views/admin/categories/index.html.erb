@@ -1,0 +1,27 @@
+<section class="admin-products-index">
+
+  <header class="page-header">
+    <h1>Admin &raquo; All Categories</h1>
+  </header>
+
+ <div class="well">
+    <%= link_to 'Add New Category', [:new, :admin, :category], class: 'btn btn-success' %>
+  </div>
+
+  <div class="panel panel-default products">
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+        <th colspan="1">Category Type</th>
+          <th colspan="1">Qty Remaining</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @categories %>
+      </tbody>
+    </table>
+
+  </div>
+
+</section> 
