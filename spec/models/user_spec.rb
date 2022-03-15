@@ -34,19 +34,19 @@ RSpec.describe User, type: :model do
         password: '1337',
         password_confirmation: '1337'
       )
-      expect(@user.first_name).not_to eq([])
+      expect(@user).not_to be_valid()
       # pp @user
     end
 
     it "is not valid without a last name" do
-      @user = User.create(
+      @user = User.new(
         first_name: 'Joe',
         last_name: nil,
         email: 'TEST@TEST.com',
         password: '1337',
         password_confirmation: '1337'
       )
-      expect(@user.last_name).not_to eq([])
+      expect(@user).not_to be_valid()
       # pp @user
     end
 
@@ -58,7 +58,7 @@ RSpec.describe User, type: :model do
         password: '37',
         password_confirmation: '37'
       )
-      expect(@user.password).to have_attributes(size: 2)
+      expect(@user).not_to be_valid()
     end
 
   end
@@ -66,8 +66,47 @@ RSpec.describe User, type: :model do
 
   describe '.authenticate_with_credentials' do
     # examples for this class method here
-    
+    it "should be valid if there is whitespace" do
+      @user = User.new(
+        first_name: 'Joe',
+        last_name: 'Smith',
+        email: 'test@test.com',
+        password: '1337',
+        password_confirmation: '1337'
+      )
+      @user.save
+
+      removeWhiteSpaceEmail = User.authenticate_with_credentials(' test@test.com ', '1337')
+      expect(removeWhiteSpaceEmail).to_not be(nil)
+    end
+
+    it "should be valid if string is upper case " do
+      @user = User.new(
+        first_name: 'Joe',
+        last_name: 'Smith',
+        email: 'test@test.com',
+        password: '1337',
+        password_confirmation: '1337'
+      )
+      @user.save
+
+      downcaseEmail = User.authenticate_with_credentials('TeSt@tEst.com', '1337')
+      expect(downcaseEmail).to_not be(nil)
+    end
+
+    it "should be valid if string is upper case and there is whitespace" do
+      @user = User.new(
+        first_name: 'Joe',
+        last_name: 'Smith',
+        email: 'test@test.com',
+        password: '1337',
+        password_confirmation: '1337'
+      )
+      @user.save
+
+      whiteSpaceAndUpcase = User.authenticate_with_credentials('  TeSt@tEsT.com  ', '1337')
+      expect(whiteSpaceAndUpcase).to_not be(nil)
+    end
+
   end
-
-
 end
