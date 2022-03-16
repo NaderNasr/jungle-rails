@@ -4,6 +4,7 @@ A mini e-commerce application built with Rails 4.2
 
 ## Preview
 
+https://user-images.githubusercontent.com/35424606/158684779-c089aea2-3d98-4079-932a-1d26c0a895ef.mov
 
 
 ## Setup
